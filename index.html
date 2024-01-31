@@ -3,22 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-    }
-  </style>
+  <title>Halaman dengan Header Eksternal</title>
 </head>
 <body>
 
-  <!-- Include header -->
-  <include src="header.html"></include>
+  <!-- Elemen tempat header akan dimasukkan -->
+  <div id="header-container"></div>
+
+  <script>
+    // Menggunakan fetch untuk mengambil isi header.html
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        // Menambahkan isi header ke dalam elemen dengan id "header-container"
+        document.getElementById('header-container').innerHTML = data;
+      })
+      .catch(error => console.error('Error:', error));
+  </script>
 
   <!-- Content goes here -->
-
-  <!-- Include footer -->
-  <include src="footer.html"></include>
 
 </body>
 </html>
