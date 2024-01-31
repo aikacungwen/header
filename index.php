@@ -1,24 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Video HTML Generator</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Player with Video.js</title>
+  <!-- Sertakan library Video.js -->
+  <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet">
+  <script src="https://vjs.zencdn.net/7.15.4/video.js"></script>
+  <style>
+    /* Tambahkan gaya CSS untuk membuat video mengisi seluruh halaman */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    #my-video {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
 </head>
 <body>
-    <h1>Video HTML Generator</h1>
 
-    <form action="generate_html.php" method="post">
-        <label for="judul">Judul Video:</label>
-        <input type="text" name="judul" required><br>
+<?php
 
-        <label for="video_url">URL Video MP4:</label>
-        <input type="url" name="video_url" required><br>
+// Cek apakah ada parameter video_url yang dikirim
+if (isset($_GET["video_url"])) {
+  $video_url = $_GET["video_url"];
 
-        <label for="subtitle_url">URL Subtitle (VTT):</label>
-        <input type="url" name="subtitle_url" required><br>
+  // Buat link embed menggunakan Video.js
+  $embed_code = '<video id="my-video" class="video-js" controls preload="auto" data-setup="{}">';
+  $embed_code .= '<source src="' . $video_url . '" type="video/mp4">';
+  $embed_code .= '</video>';
+  
+  // Tampilkan link embed
+  echo $embed_code;
+}
 
-        <input type="submit" value="Buat HTML">
-    </form>
+?>
+
 </body>
 </html>
