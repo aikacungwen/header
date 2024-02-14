@@ -27,41 +27,15 @@
             class: 'download-button',
             click: function() {
                 var videoUrl = 'https://cdn4.videas.fr/03906ecf278544d4b376031de493aa31/23rene-mp4-480p.mp4';
-                showDownloadPopup(videoUrl);
+                var link = document.createElement('a');
+                link.href = videoUrl;
+                link.download = 'video.mp4';
+                link.click();
             }
         });
 
         // Setel HTML sebagai true agar ikon dapat ditampilkan
         downloadButton.el().innerHTML = '<i class="fas fa-download"></i> Download';
-
-        function showDownloadPopup(videoUrl) {
-            var popup = document.createElement('div');
-            popup.style.position = 'fixed';
-            popup.style.top = '50%';
-            popup.style.left = '50%';
-            popup.style.transform = 'translate(-50%, -50%)';
-            popup.style.padding = '20px';
-            popup.style.backgroundColor = '#fff';
-            popup.style.border = '1px solid #ccc';
-            popup.style.zIndex = '1000';
-
-            var downloadLink = document.createElement('a');
-            downloadLink.href = videoUrl;
-            downloadLink.download = 'video.mp4';
-            downloadLink.textContent = 'Download Video';
-
-            var closeButton = document.createElement('button');
-            closeButton.textContent = 'Close';
-            closeButton.onclick = function() {
-                document.body.removeChild(popup);
-            };
-
-            popup.appendChild(downloadLink);
-            popup.appendChild(closeButton);
-
-            document.body.appendChild(popup);
-        }
     </script>
 </body>
 </html>
-
