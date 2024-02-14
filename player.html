@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Memutar Video MP4</title>
+    <link rel="stylesheet" type="text/css" href="https://vjs.zencdn.net/7.15.5/video-js.css">
+    <script src="https://kit.fontawesome.com/0fbdb9416f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <video id="my_video_1" class="video-js vjs-default-skin" width="640" height="360"
+        controls preload="auto" poster="http://video-js.zencoder.com/oceans-clip.jpg"
+        data-setup='{"aspectRatio":"640:360", "playbackRates": [1, 1.5, 2]}'>
+        <source src="https://cdn4.videas.fr/03906ecf278544d4b376031de493aa31/23rene-mp4-480p.mp4?attachment=true&sig=9151a7d2030cd61b6111a44750abb94e840c2691490a17a0e48f6dd9b82a3303:1ra8P6:fEWP-JKRgHpo8666v_qS4XeuLFZHXRjepJvCWBJ7pKU" type="video/mp4" />
+        
+        <!-- Tambahkan elemen track untuk subtitle -->
+        <track label="Indonesia" kind="subtitles" srclang="id" src="1s1.vtt" default>
+    </video>
+
+    <!-- Tambahkan tombol download dengan ikon di dalam pemutar video -->
+    <script src="https://vjs.zencdn.net/7.15.5/video.js"></script>
+    <script>
+        var player = videojs('my_video_1');
+
+        // Tambahkan tombol download dengan ikon
+        var downloadButton = player.controlBar.addChild('button', {
+            text: '<i class="fas fa-download"></i> Download',
+            class: 'download-button',
+            click: function() {
+                var videoUrl = 'https://cdn4.videas.fr/03906ecf278544d4b376031de493aa31/23rene-mp4-480p.mp4';
+                showDownloadPopup(videoUrl);
+            }
+        });
+
+        // Setel HTML sebagai true agar ikon dapat ditampilkan
+        downloadButton.el().innerHTML = '<i class="fas fa-download"></i> Download';
+
+        function showDownloadPopup(videoUrl) {
+            var popup = document.createElement('div');
+            popup.style.position = 'fixed';
+            popup.style.top = '50%';
+            popup.style.left = '50%';
+            popup.style.transform = 'translate(-50%, -50%)';
+            popup.style.padding = '20px';
+            popup.style.backgroundColor = '#fff';
+            popup.style.border = '1px solid #ccc';
+            popup.style.zIndex = '1000';
+
+            var downloadLink = document.createElement('a');
+            downloadLink.href = videoUrl;
+            downloadLink.download = 'video.mp4';
+            downloadLink.textContent = 'Download Video';
+
+            var closeButton = document.createElement('button');
+            closeButton.textContent = 'Close';
+            closeButton.onclick = function() {
+                document.body.removeChild(popup);
+            };
+
+            popup.appendChild(downloadLink);
+            popup.appendChild(closeButton);
+
+            document.body.appendChild(popup);
+        }
+    </script>
+</body>
+</html>
+
