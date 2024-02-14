@@ -4,7 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Memutar Video MP4</title>
     <link rel="stylesheet" type="text/css" href="https://vjs.zencdn.net/7.15.5/video-js.css">
-    <script src="https://kit.fontawesome.com/0fbdb9416f.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <video id="my_video_1" class="video-js vjs-default-skin" width="640" height="360"
@@ -16,26 +15,7 @@
         <track label="Indonesia" kind="subtitles" srclang="id" src="1s1.vtt" default>
     </video>
 
-    <!-- Tambahkan tombol download dengan ikon di dalam pemutar video -->
+    <!-- Tambahkan script Video.js -->
     <script src="https://vjs.zencdn.net/7.15.5/video.js"></script>
-    <script>
-        var player = videojs('my_video_1');
-
-        // Tambahkan tombol download dengan ikon
-        var downloadButton = player.controlBar.addChild('button', {
-            text: '<i class="fas fa-download"></i> Download',
-            class: 'download-button',
-            click: function() {
-                var videoUrl = 'https://cdn4.videas.fr/03906ecf278544d4b376031de493aa31/23rene-mp4-480p.mp4';
-                var link = document.createElement('a');
-                link.href = videoUrl;
-                link.download = 'video.mp4';
-                link.click();
-            }
-        });
-
-        // Setel HTML sebagai true agar ikon dapat ditampilkan
-        downloadButton.el().innerHTML = '<i class="fas fa-download"></i> Download';
-    </script>
 </body>
 </html>
